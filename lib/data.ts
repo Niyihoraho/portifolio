@@ -195,8 +195,8 @@ export const stats: Stat[] = [
 // Company information
 export const companyInfo = {
   name: "Delight Consultancy Ltd",
-  tagline: "From Idea to Market — We Design, Prototype, and Manufacture Your Innovation",
-  description: "Delight Consultancy Ltd is a Rwandan-based engineering and innovation consultancy that helps inventors, startups, and industries transform ideas into manufacturable products. We combine research, design, prototyping, and global manufacturing support to deliver end-to-end product development services.",
+  tagline: "From Idea to Market, We Design, Prototype, and Manufacture Your Innovation",
+  description: "Delight Consultancy Ltd - We combine research, design, and manufacturing to deliver end-to-end product development services.",
   mission: "To deliver research-driven engineering and design solutions that bridge creativity, functionality, and manufacturability — helping clients build impactful, high-quality products that improve lives and drive industrial growth.",
   vision: "To become Africa's most trusted product innovation consultancy — connecting research, design, and global manufacturing to shape the next generation of engineered products.",
   location: "Kigali City, Rwanda",

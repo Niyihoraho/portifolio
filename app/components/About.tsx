@@ -89,9 +89,9 @@ export default function About() {
     <>
       {/* Hero Section with Background Image */}
       <section
-        id="about"
+        id="home"
         ref={sectionRef}
-        className="relative py-32 min-h-[600px] flex items-center"
+        className="relative py-32 min-h-screen flex items-center"
         style={{
           backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
           backgroundSize: 'cover',
@@ -100,29 +100,30 @@ export default function About() {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
         {/* Additional subtle gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0078D7]/10 via-transparent to-[#0078D7]/10 pointer-events-none" />
         
         {/* Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h2
-              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
+            <h1
+              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              About{" "}
+              From Idea to Market —
+              <br />
               <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
-                Delight Consultancy
+                We Design, Prototype, and Manufacture
               </span>
-            </h2>
+            </h1>
             <p
-              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
+              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed mb-8 transition-all duration-700 delay-100 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              Bridging Innovation, Engineering, and Manufacturing
+              {companyInfo.description}
             </p>
           </div>
         </div>

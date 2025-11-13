@@ -35,28 +35,24 @@ export default function Header() {
           ? "glass shadow-lg py-3"
           : "bg-transparent py-5"
       }`}
-      style={!isHomePage ? {
+      style={{
         backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-      } : {}}
+      }}
     >
-      {/* Overlay for non-home pages */}
-      {!isHomePage && (
-        <>
-          <div
-            className={`absolute inset-0 transition-all duration-300 ${
-              isScrolled
-                ? "bg-white/95 backdrop-blur-md"
-                : "bg-gradient-to-b from-black/50 via-black/35 to-black/25"
-            }`}
-          />
-          {/* Additional subtle gradient overlay for depth */}
-          {!isScrolled && (
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0078D7]/10 via-transparent to-[#0078D7]/10 pointer-events-none" />
-          )}
-        </>
+      {/* Overlay */}
+      <div
+        className={`absolute inset-0 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md"
+            : "bg-gradient-to-b from-black/50 via-black/35 to-black/25"
+        }`}
+      />
+      {/* Additional subtle gradient overlay for depth */}
+      {!isScrolled && (
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0078D7]/10 via-transparent to-[#0078D7]/10 pointer-events-none" />
       )}
       
       {/* Content wrapper with relative positioning */}
