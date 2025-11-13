@@ -182,13 +182,14 @@ export interface Stat {
   label: string;
   value: string;
   suffix?: string;
+  icon?: string; // Icon name from lucide-react
 }
 
 export const stats: Stat[] = [
-  { label: "Projects Executed", value: "50", suffix: "+" },
-  { label: "Years Experience", value: "5", suffix: "+" },
-  { label: "Happy Clients", value: "30", suffix: "+" },
-  { label: "Industries Served", value: "8", suffix: "+" },
+  { label: "Projects Executed", value: "8", suffix: "+", icon: "Briefcase" },
+  { label: "Years Experience", value: "8", suffix: "+", icon: "Award" },
+  { label: "Happy Clients", value: "8", suffix: "+", icon: "Users" },
+  { label: "Industries Served", value: "8", suffix: "+", icon: "Factory" },
 ];
 
 // Company information
@@ -271,6 +272,38 @@ export const highlights: Highlight[] = [
     title: "Cost-Effective Solutions",
     description: "Optimized processes that deliver quality results within your budget.",
     icon: "",
+  },
+];
+
+// Testimonials
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  rating: number;
+  project?: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    id: "1",
+    name: "Jean Baptiste",
+    role: "Founder",
+    company: "AgriTech Solutions",
+    content: "Delight Consultancy transformed our rice milling concept into a production-ready machine. Their expertise in SolidWorks and manufacturing optimization exceeded our expectations. The final product is efficient, cost-effective, and perfectly suited for small-scale farmers.",
+    rating: 5,
+    project: "Rice Milling Machine",
+  },
+  {
+    id: "2",
+    name: "Marie Uwimana",
+    role: "Director",
+    company: "Education for All Initiative",
+    content: "The mobile classroom bus project was executed flawlessly. Delight Consultancy understood our vision and delivered a flexible, modular learning space that brings education to remote communities. Their attention to detail and commitment to quality is outstanding.",
+    rating: 5,
+    project: "Customized Mobile Classroom Bus",
   },
 ];
 

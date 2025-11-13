@@ -6,8 +6,10 @@ import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [filter, setFilter] = useState("All");
   const sectionRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,7 +25,23 @@ export default function Projects() {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeroVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) {
+      heroObserver.observe(heroRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      heroObserver.disconnect();
+    };
   }, []);
 
   const categories = ["All", ...new Set(projects.map((p) => p.category))];
@@ -33,80 +51,143 @@ export default function Projects() {
       : projects.filter((p) => p.category === filter);
 
   return (
-    <section
-      id="projects"
-      ref={sectionRef}
-      className="py-20 bg-white"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2
-            className={`text-5xl sm:text-6xl font-extrabold text-foreground mb-6 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Our{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-extrabold">
-              Projects
-            </span>
-          </h2>
-          <p
-            className={`text-xl text-gray-700 max-w-2xl mx-auto mb-10 font-medium transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Showcasing innovation through engineering excellence
-          </p>
+    <>
+      {/* Hero Section with Blueprint */}
+      <section
+        ref={heroRef}
+        className="relative py-32 min-h-[500px] flex items-center overflow-hidden"
+        style={{
+          backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1
+              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Our{" "}
+              <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
+                Projects
+              </span>
+            </h1>
+            <p
+              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Showcasing innovation through engineering excellence
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section
+        id="projects"
+        ref={sectionRef}
+        className="py-24 sm:py-32 bg-gray-light"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2
+              className={`text-4xl sm:text-5xl font-extrabold text-foreground mb-4 transition-all duration-700 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Explore Our{" "}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-extrabold">
+                Portfolio
+              </span>
+            </h2>
+            <p
+              className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-700 delay-100 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Browse through our innovative projects across different industries
+            </p>
+          </div>
 
           {/* Filter Buttons */}
           <div
-            className={`flex flex-wrap justify-center gap-3 transition-all duration-700 delay-200 ${
+            className={`mb-16 transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${
-                  filter === category
-                    ? "bg-[#0078D7] text-white shadow-lg hover:bg-[#005a9e]"
-                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-[#0078D7] hover:text-[#0078D7]"
-                }`}
-              >
-                {category}
-              </button>
+            <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setFilter(category)}
+                  className={`px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
+                    filter === category
+                      ? "bg-[#0078D7] text-white shadow-lg hover:shadow-xl hover:bg-[#005a9e] scale-105"
+                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-[#0078D7] hover:text-[#0078D7] hover:bg-gray-50 shadow-md hover:shadow-lg"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-12">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                isVisible={isVisible}
+              />
             ))}
           </div>
-        </div>
 
-        {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              isVisible={isVisible}
-            />
-          ))}
-        </div>
-
-        {/* View More */}
-        {filteredProjects.length > 6 && (
+          {/* Results Count & View More */}
           <div
-            className={`text-center mt-12 transition-all duration-700 delay-500 ${
+            className={`text-center transition-all duration-700 delay-500 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <button className="px-8 py-4 bg-white text-foreground border-2 border-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all hover:scale-105">
-              View All Projects
-            </button>
+            {filteredProjects.length === 0 ? (
+              <div className="py-12">
+                <p className="text-gray-600 text-lg font-medium mb-6">
+                  No projects found in this category.
+                </p>
+                <button
+                  onClick={() => setFilter("All")}
+                  className="px-8 py-4 bg-[#0078D7] text-white rounded-full font-semibold hover:bg-[#005a9e] transition-all hover:scale-105 shadow-lg"
+                >
+                  View All Projects
+                </button>
+              </div>
+            ) : (
+              <div>
+                <p className="text-gray-600 mb-6 text-lg font-medium">
+                  Showing {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+                  {filter !== "All" && ` in ${filter}`}
+                </p>
+                {filteredProjects.length > 6 && (
+                  <button className="px-8 py-4 bg-white text-foreground border-2 border-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all hover:scale-105 shadow-lg">
+                    Load More Projects
+                  </button>
+                )}
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
 

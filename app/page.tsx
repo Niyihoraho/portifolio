@@ -1,10 +1,12 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
+import HomePreview from "./components/HomePreview";
 import Footer from "./components/Footer";
+
+export const metadata = {
+  title: "Delight Consultancy Ltd | Product Design & Engineering | Kigali, Rwanda",
+  description: "From Idea to Market. Expert product design, engineering, prototyping, and manufacturing services in Rwanda.",
+};
 
 export default function Home() {
   return (
@@ -12,10 +14,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Services />
-        <Projects />
-        <Contact />
+        <HomePreview />
       </main>
       <Footer />
     </>

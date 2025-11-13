@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Service } from "@/lib/data";
 import { FlaskConical, Cog, Wrench, Factory, Globe, Lightbulb } from "lucide-react";
 
@@ -18,52 +19,79 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
   "innovation-consulting": Lightbulb,
 };
 
+// Blueprint images for each service
+const blueprintImages = [
+  "/blueprints/architectural-blueprints (1).jpg",
+  "/blueprints/architectural-blueprints (2).jpg",
+  "/blueprints/architectural-blueprints (3).jpg",
+  "/blueprints/architectural-blueprints (4).jpg",
+  "/blueprints/architectural-blueprints (5).jpg",
+  "/blueprints/33918.jpg",
+];
+
 export default function ServiceCard({ service, index, isVisible }: ServiceCardProps) {
   const IconComponent = iconMap[service.id] || Cog;
+  const blueprintImage = blueprintImages[index] || blueprintImages[0];
   
   return (
     <div
-      className={`group p-8 rounded-xl bg-white shadow-md hover:shadow-xl border border-gray-200 hover:border-primary/30 transition-all duration-300 ${
+      className={`group relative overflow-hidden rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* Icon Badge */}
-      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-        <IconComponent className="w-6 h-6 text-primary" />
+      {/* Blueprint Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={blueprintImage}
+          alt={`Blueprint for ${service.title}`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85 group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/75 transition-all duration-300" />
       </div>
 
-      {/* Title */}
-      <h3 className="text-2xl font-bold text-foreground mb-4">
-        {service.title}
-      </h3>
+      {/* Content */}
+      <div className="relative p-8 min-h-[400px] flex flex-col z-10">
+        {/* Icon Badge */}
+        <div className="w-16 h-16 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 border-2 border-primary/30 group-hover:border-primary/50">
+          <IconComponent className="w-8 h-8 text-white" />
+        </div>
 
-      {/* Description */}
-      <p className="text-gray-700 mb-5 leading-relaxed text-base font-medium">
-        {service.description}
-      </p>
+        {/* Title */}
+        <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-secondary transition-colors">
+          {service.title}
+        </h3>
 
-      {/* Benefits */}
-      <ul className="space-y-2">
-        {service.benefits.map((benefit, idx) => (
-          <li key={idx} className="flex items-start text-sm text-gray-600">
-            <svg
-              className="w-4 h-4 text-primary mr-2 flex-shrink-0 mt-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-            <span>{benefit}</span>
-          </li>
-        ))}
-      </ul>
+        {/* Description */}
+        <p className="text-white/90 mb-6 leading-relaxed text-base font-medium flex-grow">
+          {service.description}
+        </p>
+
+        {/* Benefits */}
+        <ul className="space-y-3">
+          {service.benefits.map((benefit, idx) => (
+            <li key={idx} className="flex items-start text-sm text-white/95">
+              <svg
+                className="w-5 h-5 text-secondary mr-3 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span className="font-medium">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

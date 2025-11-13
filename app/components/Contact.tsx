@@ -6,7 +6,9 @@ import { MapPin, Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,37 +24,72 @@ export default function Contact() {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeroVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) {
+      heroObserver.observe(heroRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      heroObserver.disconnect();
+    };
   }, []);
 
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="py-20 bg-gray-light"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2
-            className={`text-5xl sm:text-6xl font-extrabold text-foreground mb-6 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Get In{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-extrabold">
-              Touch
-            </span>
-          </h2>
-          <p
-            className={`text-xl text-gray-700 max-w-2xl mx-auto font-medium transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Ready to transform your idea into reality? Let's discuss your project.
-          </p>
+    <>
+      {/* Hero Section with Blueprint */}
+      <section
+        ref={heroRef}
+        className="relative py-32 min-h-[500px] flex items-center overflow-hidden"
+        style={{
+          backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1
+              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Get In{" "}
+              <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
+                Touch
+              </span>
+            </h1>
+            <p
+              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              Ready to transform your idea into reality? Let's discuss your project.
+            </p>
+          </div>
         </div>
+      </section>
 
+      {/* Contact Section */}
+      <section
+        id="contact"
+        ref={sectionRef}
+        className="py-24 sm:py-32 bg-gray-light"
+      >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Contact Information */}
           <div
@@ -127,7 +164,8 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
 

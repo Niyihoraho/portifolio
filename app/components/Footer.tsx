@@ -6,19 +6,11 @@ import { companyInfo } from "@/lib/data";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const quickLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About Us" },
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About Us" },
+    { href: "/services", label: "Services" },
+    { href: "/projects", label: "Projects" },
   ];
 
   const legalLinks = [
@@ -120,13 +112,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
                     className="text-white/70 hover:text-primary transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
