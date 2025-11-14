@@ -4,15 +4,41 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { companyInfo, stats, highlights } from "@/lib/data";
 import { Target, Users, Network, DollarSign, Briefcase, Award, Factory, Compass, Eye } from "lucide-react";
+import SkeletonLoader from "./SkeletonLoader";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(true); // Start visible
+  const [isVisible, setIsVisible] = useState(false);
   const [isWhatWeDoVisible, setIsWhatWeDoVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [counters, setCounters] = useState(stats.map(() => 0));
   const sectionRef = useRef<HTMLElement>(null);
   const whatWeDoRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    // Preload the background image
+    const img = new window.Image();
+    img.src = "/blueprints/architectural-blueprints.jpg";
+    
+    const handleLoad = () => {
+      // Add a small delay for smooth transition
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsVisible(true);
+      }, 300);
+    };
+
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.onload = handleLoad;
+      img.onerror = () => {
+        setIsLoading(false);
+        setIsVisible(true);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,11 +113,16 @@ export default function About() {
 
   return (
     <>
+      {/* Skeleton Loader */}
+      <SkeletonLoader isVisible={isLoading} />
+      
       {/* Hero Section with Background Image */}
       <section
         id="home"
         ref={sectionRef}
-        className="relative py-32 min-h-screen flex items-center bg-[#1a1a2e]"
+        className={`relative py-32 min-h-screen flex items-center bg-[#1a1a2e] transition-opacity duration-500 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
         style={{
           backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
           backgroundSize: 'cover',
