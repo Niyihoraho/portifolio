@@ -6,7 +6,7 @@ import { companyInfo, stats, highlights } from "@/lib/data";
 import { Target, Users, Network, DollarSign, Briefcase, Award, Factory, Compass, Eye } from "lucide-react";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start visible
   const [isWhatWeDoVisible, setIsWhatWeDoVisible] = useState(false);
   const [counters, setCounters] = useState(stats.map(() => 0));
   const sectionRef = useRef<HTMLElement>(null);
