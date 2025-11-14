@@ -3,8 +3,8 @@ import Testimonials from "../components/Testimonials";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "Client Testimonials | Delight Consultancy Ltd",
-  description: "Read what our clients say about working with Delight Consultancy Ltd. Real feedback from satisfied customers.",
+  title: "Client Testimonials | Delight engineering consultancy ltd",
+  description: "Read what our clients say about working with Delight engineering consultancy ltd. Real feedback from satisfied customers.",
 };
 
 export default function TestimonialsPage() {

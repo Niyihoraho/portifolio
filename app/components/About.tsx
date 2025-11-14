@@ -2,56 +2,31 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { companyInfo, stats, highlights } from "@/lib/data";
+import { stats, highlights, companyInfo } from "@/lib/data";
 import { Target, Users, Network, DollarSign, Briefcase, Award, Factory, Compass, Eye } from "lucide-react";
-import SkeletonLoader from "./SkeletonLoader";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isWhatWeDoVisible, setIsWhatWeDoVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [counters, setCounters] = useState(stats.map(() => 0));
-  const sectionRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const whatWeDoRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    // Preload the background image
-    const img = new window.Image();
-    img.src = "/blueprints/architectural-blueprints.jpg";
-    
-    const handleLoad = () => {
-      // Add a small delay for smooth transition
-      setTimeout(() => {
-        setIsLoading(false);
-        setIsVisible(true);
-      }, 300);
-    };
-
-    if (img.complete) {
-      handleLoad();
-    } else {
-      img.onload = handleLoad;
-      img.onerror = () => {
-        setIsLoading(false);
-        setIsVisible(true);
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
+    const heroObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setIsHeroVisible(true);
         }
       },
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (heroRef.current) {
+      heroObserver.observe(heroRef.current);
     }
 
     const whatWeDoObserver = new IntersectionObserver(
@@ -82,7 +57,7 @@ export default function About() {
     }
 
     return () => {
-      observer.disconnect();
+      heroObserver.disconnect();
       whatWeDoObserver.disconnect();
       contentObserver.disconnect();
     };
@@ -113,16 +88,10 @@ export default function About() {
 
   return (
     <>
-      {/* Skeleton Loader */}
-      <SkeletonLoader isVisible={isLoading} />
-      
-      {/* Hero Section with Background Image */}
+      {/* Hero Section with Blueprint */}
       <section
-        id="home"
-        ref={sectionRef}
-        className={`relative py-32 min-h-screen flex items-center bg-[#1a1a2e] transition-opacity duration-500 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
+        ref={heroRef}
+        className="relative py-32 min-h-[500px] flex items-center overflow-hidden"
         style={{
           backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
           backgroundSize: 'cover',
@@ -132,29 +101,26 @@ export default function About() {
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
-        {/* Additional subtle gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0078D7]/10 via-transparent to-[#0078D7]/10 pointer-events-none" />
         
         {/* Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
             <h1
-              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              From Idea to Market —
-              <br />
+              About{" "}
               <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
-                We Design, Prototype, and Manufacture
+                Us
               </span>
             </h1>
             <p
-              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed mb-8 transition-all duration-700 delay-100 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
+                isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              {companyInfo.description}
+              Learn about our mission, vision, and commitment to transforming ideas into market-ready products
             </p>
           </div>
         </div>
@@ -212,37 +178,37 @@ export default function About() {
       <section
         ref={contentRef}
         className="py-24 sm:py-32 bg-white"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
           <div className="text-center mb-16">
-            <h2
+          <h2
               className={`text-4xl sm:text-5xl font-extrabold text-foreground mb-4 transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
               Mission &{" "}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-extrabold">
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-extrabold">
                 Vision
-              </span>
-            </h2>
-            <p
+            </span>
+          </h2>
+          <p
               className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-700 delay-100 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
               Our commitment to excellence and innovation
-            </p>
-          </div>
+          </p>
+        </div>
 
-          {/* Mission & Vision */}
+        {/* Mission & Vision */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-24">
             {/* Mission Card */}
-            <div
+          <div
               className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-500 delay-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
+            }`}
+          >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
               <div className="relative p-10">
                 <div className="flex items-center gap-4 mb-6">
@@ -250,22 +216,22 @@ export default function About() {
                     <Compass className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-3xl font-extrabold text-foreground">
-                    Our Mission
-                  </h3>
+              Our Mission
+            </h3>
                 </div>
                 <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary mb-6 rounded-full"></div>
-                <p className="text-gray-700 leading-relaxed text-lg font-medium">
-                  {companyInfo.mission}
-                </p>
+            <p className="text-gray-700 leading-relaxed text-lg font-medium">
+              {companyInfo.mission}
+            </p>
               </div>
-            </div>
+          </div>
 
             {/* Vision Card */}
-            <div
+          <div
               className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0078D7] to-[#005a9e] shadow-lg hover:shadow-2xl transition-all duration-500 delay-300 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
+            }`}
+          >
               <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
               <div className="relative p-10">
                 <div className="flex items-center gap-4 mb-6">
@@ -277,11 +243,11 @@ export default function About() {
                   </h3>
                 </div>
                 <div className="h-1 w-20 bg-gradient-to-r from-secondary to-white mb-6 rounded-full"></div>
-                <p className="leading-relaxed text-white/95 text-lg font-medium">
-                  {companyInfo.vision}
-                </p>
-              </div>
-            </div>
+            <p className="leading-relaxed text-white/95 text-lg font-medium">
+              {companyInfo.vision}
+            </p>
+          </div>
+        </div>
           </div>
 
           {/* Stats Counter with Blueprint Backgrounds */}
@@ -309,9 +275,9 @@ export default function About() {
 
             <div
               className={`grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-8 transition-all duration-700 delay-500 ${
-                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-              }`}
-            >
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
+        >
               {stats.map((stat, index) => {
                 const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
                   Briefcase,
@@ -330,8 +296,8 @@ export default function About() {
                 ];
                 
                 return (
-                  <div
-                    key={index}
+            <div
+              key={index}
                     className="group relative h-[300px] sm:h-[340px] overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                   >
                     {/* Blueprint Background Image */}
@@ -355,58 +321,58 @@ export default function About() {
                         </div>
                       )}
                       <div className="text-5xl sm:text-6xl font-extrabold text-white mb-3 group-hover:scale-110 transition-transform duration-300">
-                        {counters[index]}
-                        {stat.suffix}
-                      </div>
+                {counters[index]}
+                {stat.suffix}
+              </div>
                       <div className="text-base sm:text-lg text-white/95 font-semibold">
-                        {stat.label}
-                      </div>
+                {stat.label}
+              </div>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
-
-          {/* Why Choose Us */}
-          <div className="text-center mb-12">
-            <h3
-              className={`text-4xl sm:text-5xl font-extrabold text-foreground mb-6 transition-all duration-700 delay-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Why Choose Us
-            </h3>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((highlight, index) => {
-              const icons = [Target, Users, Network, DollarSign];
-              const IconComponent = icons[index];
-              
-              return (
-                <div
-                  key={index}
-                  className={`p-6 rounded-xl bg-white shadow-md hover:shadow-lg border border-gray-200 transition-all ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
-                  style={{ transitionDelay: `${600 + index * 100}ms` }}
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <IconComponent className="w-5 h-5 text-primary" />
-                  </div>
-                  <h4 className="text-xl font-bold text-foreground mb-3">
-                    {highlight.title}
-                  </h4>
-                  <p className="text-gray-600 text-base leading-relaxed font-medium">
-                    {highlight.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
         </div>
-      </section>
+
+        {/* Why Choose Us */}
+        <div className="text-center mb-12">
+          <h3
+            className={`text-4xl sm:text-5xl font-extrabold text-foreground mb-6 transition-all duration-700 delay-500 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            Why Choose Us
+          </h3>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {highlights.map((highlight, index) => {
+            const icons = [Target, Users, Network, DollarSign];
+            const IconComponent = icons[index];
+            
+            return (
+              <div
+                key={index}
+                className={`p-6 rounded-xl bg-white shadow-md hover:shadow-lg border border-gray-200 transition-all ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${600 + index * 100}ms` }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <IconComponent className="w-5 h-5 text-primary" />
+                </div>
+              <h4 className="text-xl font-bold text-foreground mb-3">
+                {highlight.title}
+              </h4>
+              <p className="text-gray-600 text-base leading-relaxed font-medium">
+                {highlight.description}
+              </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
     </>
   );
 }

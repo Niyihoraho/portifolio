@@ -3,8 +3,8 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "Contact Us | Delight Consultancy Ltd",
-  description: "Get in touch with Delight Consultancy Ltd. Ready to transform your idea into reality? Contact us today.",
+  title: "Contact Us | Delight engineering consultancy ltd",
+  description: "Get in touch with Delight engineering consultancy ltd. Ready to transform your idea into reality? Contact us today.",
 };
 
 export default function ContactPage() {

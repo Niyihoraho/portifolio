@@ -2,8 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "Privacy Policy | Delight Consultancy Ltd",
-  description: "Privacy Policy for Delight Consultancy Ltd.",
+  title: "Privacy Policy | Delight engineering consultancy ltd",
+  description: "Privacy Policy for Delight engineering consultancy ltd.",
 };
 
 export default function PrivacyPage() {

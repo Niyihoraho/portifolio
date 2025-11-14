@@ -3,7 +3,7 @@ import Services from "../components/Services";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "Our Services | Delight Consultancy Ltd",
+  title: "Our Services | Delight engineering consultancy ltd",
   description: "Comprehensive product design, engineering, prototyping, and manufacturing services. From concept to market-ready products.",
 };
 

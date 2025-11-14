@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Delight Consultancy Ltd | Product Design & Engineering | Kigali, Rwanda",
-  description: "Delight Consultancy Ltd - From Idea to Market. Expert product design, engineering, prototyping, and manufacturing services in Rwanda. We transform innovations into manufacturable products.",
+  title: "Delight engineering consultancy ltd | Product Design & Engineering | Kigali, Rwanda",
+  description: "Delight engineering consultancy ltd - From Idea to Market. Expert product design, engineering, prototyping, and manufacturing services in Rwanda. We transform innovations into manufacturable products.",
   keywords: [
     "product design Rwanda",
     "engineering consultancy Kigali",
@@ -27,28 +28,28 @@ export const metadata: Metadata = {
     "design for manufacturing",
     "innovation consultancy Rwanda",
   ],
-  authors: [{ name: "Delight Consultancy Ltd" }],
-  creator: "Delight Consultancy Ltd",
-  publisher: "Delight Consultancy Ltd",
+  authors: [{ name: "Delight engineering consultancy ltd" }],
+  creator: "Delight engineering consultancy ltd",
+  publisher: "Delight engineering consultancy ltd",
   openGraph: {
     type: "website",
     locale: "en_RW",
     url: "https://delightconsultancy.rw",
-    siteName: "Delight Consultancy Ltd",
-    title: "Delight Consultancy Ltd | Product Design & Engineering",
+    siteName: "Delight engineering consultancy ltd",
+    title: "Delight engineering consultancy ltd | Product Design & Engineering",
     description: "Transform your ideas into market-ready products with expert engineering and design services in Rwanda.",
     images: [
       {
         url: "/image/drilling machine.jpg",
         width: 1200,
         height: 630,
-        alt: "Delight Consultancy - Product Design & Engineering",
+        alt: "Delight engineering consultancy ltd - Product Design & Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Delight Consultancy Ltd | Product Design & Engineering",
+    title: "Delight engineering consultancy ltd | Product Design & Engineering",
     description: "From Idea to Market - Expert product design, prototyping, and manufacturing services in Rwanda",
   },
   robots: {
@@ -82,6 +83,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <WhatsAppChat />
       </body>
     </html>
   );

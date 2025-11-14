@@ -30,35 +30,55 @@ export default function SkeletonLoader({ isVisible }: SkeletonLoaderProps) {
 
   return (
     <div 
-      className={`fixed inset-0 z-[9999] bg-white overflow-hidden transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] bg-[#1a1a2e] overflow-hidden transition-opacity duration-500 ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
       {/* Hero Section Skeleton */}
-      <div className="relative min-h-screen flex items-center bg-white">
+      <div className="relative min-h-screen flex items-center bg-[#1a1a2e]">
         {/* Background shimmer effect */}
-        <div className="absolute inset-0 overflow-hidden bg-gray-50">
-          <div className="absolute inset-0 skeleton opacity-20"></div>
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 skeleton-dark opacity-30"></div>
+          <div className="absolute inset-0 skeleton-shimmer-dark"></div>
         </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
 
         {/* Content Skeleton */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="text-center max-w-4xl mx-auto space-y-6">
             {/* Title Skeleton */}
             <div className="space-y-4">
-              <div className="h-12 sm:h-16 lg:h-20 skeleton skeleton-shimmer mx-auto max-w-3xl rounded-xl"></div>
-              <div className="h-12 sm:h-16 lg:h-20 skeleton skeleton-shimmer mx-auto max-w-2xl rounded-xl"></div>
+              <div className="h-16 sm:h-20 lg:h-24 skeleton skeleton-shimmer mx-auto max-w-3xl rounded-lg"></div>
+              <div className="h-16 sm:h-20 lg:h-24 skeleton skeleton-shimmer mx-auto max-w-2xl rounded-lg"></div>
             </div>
 
             {/* Description Skeleton */}
-            <div className="space-y-3 pt-6">
-              <div className="h-5 skeleton skeleton-shimmer mx-auto max-w-2xl rounded-md"></div>
-              <div className="h-5 skeleton skeleton-shimmer mx-auto max-w-xl rounded-md"></div>
-              <div className="h-5 skeleton skeleton-shimmer mx-auto max-w-lg rounded-md"></div>
+            <div className="space-y-3 pt-4">
+              <div className="h-6 skeleton skeleton-shimmer mx-auto max-w-2xl rounded"></div>
+              <div className="h-6 skeleton skeleton-shimmer mx-auto max-w-xl rounded"></div>
+              <div className="h-6 skeleton skeleton-shimmer mx-auto max-w-lg rounded"></div>
             </div>
           </div>
         </div>
 
+        {/* Floating shimmer particles - Ocean wave effect */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-full h-32 skeleton-dark opacity-10"
+              style={{
+                top: `${30 + i * 25}%`,
+                left: '0',
+                animationDelay: `${i * 0.4}s`,
+                animationDuration: `${2.5 + i * 0.3}s`,
+                transform: `translateX(${i % 2 === 0 ? '-100%' : '100%'})`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Additional sections skeleton (below fold) */}
@@ -67,14 +87,14 @@ export default function SkeletonLoader({ isVisible }: SkeletonLoaderProps) {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Left side - Text skeleton */}
             <div className="space-y-4">
-              <div className="h-10 skeleton skeleton-shimmer w-3/4 rounded-xl"></div>
-              <div className="h-4 skeleton skeleton-shimmer w-full rounded-md"></div>
-              <div className="h-4 skeleton skeleton-shimmer w-full rounded-md"></div>
-              <div className="h-4 skeleton skeleton-shimmer w-5/6 rounded-md"></div>
+              <div className="h-10 skeleton skeleton-shimmer w-3/4 rounded-lg"></div>
+              <div className="h-4 skeleton skeleton-shimmer w-full rounded"></div>
+              <div className="h-4 skeleton skeleton-shimmer w-full rounded"></div>
+              <div className="h-4 skeleton skeleton-shimmer w-5/6 rounded"></div>
             </div>
 
             {/* Right side - Image skeleton */}
-            <div className="h-96 skeleton skeleton-shimmer rounded-xl"></div>
+            <div className="h-96 skeleton skeleton-shimmer rounded-lg"></div>
           </div>
         </div>
       </div>
@@ -82,10 +102,10 @@ export default function SkeletonLoader({ isVisible }: SkeletonLoaderProps) {
       {/* Stats skeleton */}
       <div className="bg-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-10 skeleton skeleton-shimmer w-64 mx-auto mb-12 rounded-xl"></div>
+          <div className="h-12 skeleton skeleton-shimmer w-64 mx-auto mb-12 rounded-lg"></div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-64 skeleton skeleton-shimmer rounded-2xl"></div>
+              <div key={i} className="h-64 skeleton skeleton-shimmer rounded-xl"></div>
             ))}
           </div>
         </div>

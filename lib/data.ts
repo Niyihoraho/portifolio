@@ -88,7 +88,7 @@ export const projects: Project[] = [
   {
     id: "travel-mug",
     title: "Travel Mug",
-    description: "A modern, ergonomically designed travel mug combining durability, insulation, and manufacturability. Developed from concept to functional prototype, it showcases Delight Consultancy's end-to-end product development capability — from 3D design to real product.",
+    description: "A modern, ergonomically designed travel mug combining durability, insulation, and manufacturability. Developed from concept to functional prototype, it showcases Delight engineering consultancy ltd's end-to-end product development capability — from 3D design to real product.",
     category: "Consumer Products",
     images: [
       "/image/Travel mug-final design.jpg",
@@ -194,9 +194,9 @@ export const stats: Stat[] = [
 
 // Company information
 export const companyInfo = {
-  name: "Delight Consultancy Ltd",
+  name: "Delight engineering consultancy ltd",
   tagline: "From Idea to Market, We Design, Prototype, and Manufacture Your Innovation",
-  description: "Delight Consultancy Ltd - We combine research, design, and manufacturing to deliver end-to-end product development services.",
+  description: "Delight engineering consultancy ltd - We combine research, design, and manufacturing to deliver end-to-end product development services.",
   mission: "To deliver research-driven engineering and design solutions that bridge creativity, functionality, and manufacturability — helping clients build impactful, high-quality products that improve lives and drive industrial growth.",
   vision: "To become Africa's most trusted product innovation consultancy — connecting research, design, and global manufacturing to shape the next generation of engineered products.",
   location: "Kigali City, Rwanda",
@@ -292,7 +292,7 @@ export const testimonials: Testimonial[] = [
     name: "Jean Baptiste",
     role: "Founder",
     company: "AgriTech Solutions",
-    content: "Delight Consultancy transformed our rice milling concept into a production-ready machine. Their expertise in SolidWorks and manufacturing optimization exceeded our expectations. The final product is efficient, cost-effective, and perfectly suited for small-scale farmers.",
+    content: "Delight engineering consultancy ltd transformed our rice milling concept into a production-ready machine. Their expertise in SolidWorks and manufacturing optimization exceeded our expectations. The final product is efficient, cost-effective, and perfectly suited for small-scale farmers.",
     rating: 5,
     project: "Rice Milling Machine",
   },
@@ -301,7 +301,7 @@ export const testimonials: Testimonial[] = [
     name: "Marie Uwimana",
     role: "Director",
     company: "Education for All Initiative",
-    content: "The mobile classroom bus project was executed flawlessly. Delight Consultancy understood our vision and delivered a flexible, modular learning space that brings education to remote communities. Their attention to detail and commitment to quality is outstanding.",
+    content: "The mobile classroom bus project was executed flawlessly. Delight engineering consultancy ltd understood our vision and delivered a flexible, modular learning space that brings education to remote communities. Their attention to detail and commitment to quality is outstanding.",
     rating: 5,
     project: "Customized Mobile Classroom Bus",
   },

@@ -48,7 +48,7 @@ export default function Services() {
   return (
     <>
       {/* Hero Section with Blueprint */}
-      <section
+    <section
         ref={heroRef}
         className="relative py-32 min-h-[500px] flex items-center overflow-hidden"
         style={{
@@ -67,21 +67,21 @@ export default function Services() {
             <h1
               className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
                 isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Our{" "}
+            }`}
+          >
+            Our{" "}
               <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
-                Services
-              </span>
+              Services
+            </span>
             </h1>
-            <p
+          <p
               className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
                 isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Comprehensive solutions from concept to market-ready products
-            </p>
-          </div>
+            }`}
+          >
+            Comprehensive solutions from concept to market-ready products
+          </p>
+        </div>
         </div>
       </section>
 
@@ -92,7 +92,7 @@ export default function Services() {
         className="py-24 sm:py-32 bg-gray-light"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Services Grid */}
+        {/* Services Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {services.map((service, index) => (
             <ServiceCard
@@ -102,26 +102,26 @@ export default function Services() {
               isVisible={isVisible}
             />
           ))}
-          </div>
+        </div>
 
-          {/* CTA */}
-          <div
+        {/* CTA */}
+        <div
             className={`text-center mt-16 transition-all duration-700 delay-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <p className="text-gray-700 mb-8 text-xl font-semibold">
-              Ready to bring your innovation to life?
-            </p>
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <p className="text-gray-700 mb-8 text-xl font-semibold">
+            Ready to bring your innovation to life?
+          </p>
             <Link
               href="/contact"
-              className="inline-block px-10 py-5 bg-[#0078D7] hover:bg-[#005a9e] text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            >
-              Let's Discuss Your Project
+            className="inline-block px-10 py-5 bg-[#0078D7] hover:bg-[#005a9e] text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
+          >
+            Let's Discuss Your Project
             </Link>
-          </div>
         </div>
-      </section>
+      </div>
+    </section>
     </>
   );
 }

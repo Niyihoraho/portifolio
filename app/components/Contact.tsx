@@ -46,7 +46,7 @@ export default function Contact() {
   return (
     <>
       {/* Hero Section with Blueprint */}
-      <section
+    <section
         ref={heroRef}
         className="relative py-32 min-h-[500px] flex items-center overflow-hidden"
         style={{
@@ -65,21 +65,21 @@ export default function Contact() {
             <h1
               className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 transition-all duration-700 ${
                 isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Get In{" "}
+            }`}
+          >
+            Get In{" "}
               <span className="bg-gradient-to-r from-secondary via-secondary to-white bg-clip-text text-transparent font-extrabold">
-                Touch
-              </span>
+              Touch
+            </span>
             </h1>
-            <p
+          <p
               className={`text-xl sm:text-2xl text-white/95 max-w-3xl mx-auto font-medium leading-relaxed transition-all duration-700 delay-100 ${
                 isHeroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Ready to transform your idea into reality? Let's discuss your project.
-            </p>
-          </div>
+            }`}
+          >
+            Ready to transform your idea into reality? Let's discuss your project.
+          </p>
+        </div>
         </div>
       </section>
 
@@ -164,7 +164,7 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      </section>
+    </section>
     </>
   );
 }

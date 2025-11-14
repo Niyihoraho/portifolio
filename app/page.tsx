@@ -1,11 +1,12 @@
 import Header from "./components/Header";
-import About from "./components/About";
+import Hero from "./components/Hero";
+import ServicesCategories from "./components/ServicesCategories";
 import HomePreview from "./components/HomePreview";
 import Footer from "./components/Footer";
 import ImagePreloader from "./components/ImagePreloader";
 
 export const metadata = {
-  title: "Delight Consultancy Ltd | Product Design & Engineering | Kigali, Rwanda",
+  title: "Delight engineering consultancy ltd | Product Design & Engineering | Kigali, Rwanda",
   description: "From Idea to Market. Expert product design, engineering, prototyping, and manufacturing services in Rwanda.",
 };
 
@@ -15,7 +16,8 @@ export default function Home() {
       <ImagePreloader />
       <Header />
       <main>
-        <About />
+        <Hero />
+        <ServicesCategories />
         <HomePreview />
       </main>
       <Footer />

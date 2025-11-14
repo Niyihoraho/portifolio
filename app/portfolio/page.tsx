@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "Portfolio | Delight Consultancy Ltd",
+  title: "Portfolio | Delight engineering consultancy ltd",
   description: "View our portfolio of successful projects and engineering solutions.",
 };
 
