@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import About from "./components/About";
 import HomePreview from "./components/HomePreview";
 import Footer from "./components/Footer";
+import ImagePreloader from "./components/ImagePreloader";
 
 export const metadata = {
   title: "Delight Consultancy Ltd | Product Design & Engineering | Kigali, Rwanda",
@@ -11,6 +12,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
+      <ImagePreloader />
       <Header />
       <main>
         <About />

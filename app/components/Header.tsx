@@ -40,6 +40,7 @@ export default function Header() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        backgroundColor: '#1a1a2e', // Fallback color
       }}
     >
       {/* Overlay */}

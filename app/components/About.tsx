@@ -91,7 +91,7 @@ export default function About() {
       <section
         id="home"
         ref={sectionRef}
-        className="relative py-32 min-h-screen flex items-center"
+        className="relative py-32 min-h-screen flex items-center bg-[#1a1a2e]"
         style={{
           backgroundImage: `url('/blueprints/architectural-blueprints.jpg')`,
           backgroundSize: 'cover',
