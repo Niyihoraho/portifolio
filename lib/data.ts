@@ -187,9 +187,9 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { label: "Projects Executed", value: "8", suffix: "+", icon: "Briefcase" },
-  { label: "Years Experience", value: "8", suffix: "+", icon: "Award" },
-  { label: "Happy Clients", value: "8", suffix: "+", icon: "Users" },
-  { label: "Industries Served", value: "8", suffix: "+", icon: "Factory" },
+  { label: "Years Experience", value: "4", suffix: "+", icon: "Award" },
+  { label: "Happy Clients", value: "5", suffix: "+", icon: "Users" },
+  { label: "Industries Served", value: "3", suffix: "+", icon: "Factory" },
 ];
 
 // Company information
